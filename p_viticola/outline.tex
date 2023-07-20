@@ -44,9 +44,11 @@
 	\end{abstract}
 \end{changemargin}
 
-\section*{Background}
+\tableofcontents
 
-\paragraph*{Powdery Mildew}
+\section{Background}
+
+\subsection{Powdery Mildew}
 
 \begin{itemize}
 	\item Description/taxonomy
@@ -63,7 +65,7 @@
 	      \end{itemize}
 \end{itemize}
 
-\paragraph*{Existing}
+\subsection{Existing}
 
 \begin{enumerate}
 	\item Classical breeders -> poor quality wine
@@ -75,7 +77,7 @@
 	\item Image processing tools \parencite{hernandezAssessmentDownyMildew2022}, \parencite{zendlerHighthroughputPhenotypingLeaf2021}
 \end{enumerate}
 
-\paragraph*{Novelty}
+\subsection{Novelty}
 
 \begin{itemize}
 	\item Current CV approaches only look at sporulation
@@ -84,17 +86,17 @@
 	\item \textbf{TODO} Test on existing experiments
 \end{itemize}
 
-\section*{Materials and Methods}
+\section{Materials and Methods}
 
-\subsection*{Plants}
-
-\parencite{bellinResistancePlasmoparaViticola2009}
-
-\subsection*{Infection}
+\subsection{Plants}
 
 \parencite{bellinResistancePlasmoparaViticola2009}
 
-\subsection*{Image acquisition}
+\subsection{Infection}
+
+\parencite{bellinResistancePlasmoparaViticola2009}
+
+\subsection{Image acquisition}
 
 \begin{itemize}
 	\item Acquisitions since 2018
@@ -102,7 +104,7 @@
 	\item Trays
 \end{itemize}
 
-\subsection*{Existing data overview}
+\subsection{Existing data overview}
 
 \begin{figure}
 	\begin{center}
@@ -152,7 +154,7 @@
 	\end{tabular}
 \end{table}
 
-\subsection*{Leaf Extraction}
+\subsection{Leaf Extraction}
 
 \begin{itemize}
 	\item Ilastik \parencite{bergIlastikInteractiveMachine2019}
@@ -161,10 +163,10 @@
 	\item Indexation
 \end{itemize}
 
-\subsection*{Binary prediction}
+\subsection{Binary prediction}
 Zooniverse \parencite{zooniverse}
 
-\subsubsection*{Image Annotation}
+\subsubsection{Image Annotation}
 
 \begin{figure}[H]
 	\centering
@@ -247,7 +249,7 @@ Four phenotypes \ref*{fig:phenotypes}
 			\toprule
 			{}                   & precision & recall & f1-score & support \\
 			\midrule
-			porulation           & 0.9922    & 0.9078 & 0.9481   & 141     \\
+			sporulation           & 0.9922    & 0.9078 & 0.9481   & 141     \\
 			necrosis\_dots       & 0.9388    & 0.8679 & 0.9020   & 106     \\
 			necrosis\_stains     & 0.7313    & 0.7656 & 0.7481   & 64      \\
 			necrosis\_senescence & 0.6800    & 0.8947 & 0.7727   & 38      \\
@@ -262,20 +264,20 @@ Four phenotypes \ref*{fig:phenotypes}
 \begin{itemize}
 	\item round 1 -> class cardinal problems~\ref*{tab:zv1data}
 	\item round 2 and + -> annotation conflict problems~\ref*{tab:zv2data}
-	\item round 3 -> experts only. annotation by agreemment
+	\item round 3 -> experts only. annotation by agreement
 \end{itemize}
 
-\subsubsection*{OIV 452-1 prediction}
+\subsubsection{OIV 452-1 prediction}
 
-\subsection*{Experiments re-analysis}
+\subsection{Experiments re-analysis}
 
-\section*{Results}
+\section{Results}
 
 \subsection{Unreliable human factor}
 
 \subsection{Result from experiment re-analysis}
 
-\section*{Discussion}
+\section{Discussion}
 
 % \clearpage
 \printbibliography
