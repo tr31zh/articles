@@ -34,20 +34,21 @@
 
 \begin{changemargin}{60pt}{60pt}
 	\begin{abstract}
+		\textbf{Not abstract but overview}
 		\textbf{Goal(s):}
 		\begin{itemize}
-                \item Computer science
-                \begin{itemize}
-    			\item Create method to use automatically phenotype the interaction between PV and Vitis
-                    \item high throughput phenotyping
-    			\item Validate the method by finding QTL in  experiments
-    			\item Compare human vs machine annotation
-                \end{itemize}
-                \item Biology
-                \begin{itemize}
-                    \item plant breeding for mildew resistance
-                    \item need to identify resistance genes in species related to the Vitis genus and in study populations
-                \end{itemize}
+			\item Computer science
+			      \begin{itemize}
+				      \item Create method to use automatically phenotype the interaction between PV and Vitis
+				      \item high throughput phenotyping
+				      \item Validate the method by finding QTL in  experiments
+				      \item Compare human vs machine annotation
+			      \end{itemize}
+			\item Biology
+			      \begin{itemize}
+				      \item plant breeding for mildew resistance
+				      \item need to identify resistance genes in species related to the Vitis genus and in study populations
+			      \end{itemize}
 		\end{itemize}
 
 		\textbf{Research or Methodology:}
@@ -56,7 +57,7 @@
 		\end{itemize}
 
 		\textbf{Too many images}
-  
+
 	\end{abstract}
 \end{changemargin}
 
@@ -76,13 +77,13 @@
 \subsection{downy Mildew}
 
 \begin{itemize}
-	\item Description/taxonomy \textbf{velazquez} 
+	\item Description/taxonomy \textbf{velazquez}
 	\item Infection mode and organ targets
-	\item History~\parencite*{fontaineEuropeBridgeheadWorldwide2021} \textbf{?}
+	\item History~\parencite{fontaineEuropeBridgeheadWorldwide2021} \textbf{?}
 	\item Consequences
 	      \begin{itemize}
 		      \item Yield loss
-		      \item Increased use of fongicides 80\% of usage for 20\% of area (\textbf{needs citation}) ->
+		      \item Increased use of fongicides 80\% of usage for 20\% of area (\textbf{needs citation}) $\rightarrow$
 		            \begin{itemize}
 			            \item Increased costs
 			            \item Ecological impact
@@ -94,25 +95,25 @@
 \subsection{Existing}
 
 \begin{enumerate}
-	\item European grapevines are sensitive to American pathogens~\parencite*{fontaineEuropeBridgeheadWorldwide2021}
-	\item Classical breeders -> poor quality wine
+	\item European grapevines are sensitive to American pathogens~\parencite{fontaineEuropeBridgeheadWorldwide2021}
+	\item Classical breeders $\rightarrow$ poor quality wine
 	\item Quality breeders after the 50s \textbf{needs citation} \textbf{?}
 	\item Introduce OIV and OIV 452-1
-        \begin{itemize}
-            \item OIV = Office Int...
-            \item OIV has full ontology
-            \item OIV 452-1 resistance to DM in leaf disks
-        \end{itemize}
+	      \begin{itemize}
+		      \item OIV = Office International de la vigne et du vin
+		      \item OIV has full ontology with resistance scales
+		      \item OIV 452-1 resistance to DM in leaf disks
+	      \end{itemize}
 	\item Critique scale \parencite{possamaiPhenotypingQTLIdentification2022}
-        \begin{itemize}
-            \item takes into account spor and necr -> needs training
-            \item plus allows comparison
-            \item nevertheless \parencite{possamaiPhenotypingQTLIdentification2022}
-        \end{itemize}
+	      \begin{itemize}
+		      \item takes into account spor and necr $\rightarrow$ needs training
+		      \item plus allows comparison
+		      \item nevertheless \parencite{possamaiPhenotypingQTLIdentification2022}
+	      \end{itemize}
 	\item Rpv3.1, Rpv10- and Rpv12 ... \textbf{needs citation} \textbf{Which ones were found with manual annotations}
-        \begin{itemize}
-            \item  \parencite{possamaiPhenotypingQTLIdentification2022} list of QTLs and how they were found
-        \end{itemize}
+	      \begin{itemize}
+		      \item  \parencite{possamaiPhenotypingQTLIdentification2022} list of QTLs and how they were found
+	      \end{itemize}
 	\item Image processing tools \parencite{hernandezAssessmentDownyMildew2022}, \parencite{zendlerHighthroughputPhenotypingLeaf2021}
 \end{enumerate}
 
@@ -139,7 +140,7 @@
 
 \begin{itemize}
 	\item Acquisitions since 2018
-	\item Multiple acquisition Methods != camera, lenses, lightning, framing, compression, post processing -> needs additional work to exploit the data \textbf{Why not use simple approach?}
+	\item Multiple acquisition Methods != camera, lenses, lightning, framing, compression, post processing $\rightarrow$ needs additional work to exploit the data \textbf{Why not use simple approach?}
 	\item Plates
 \end{itemize}
 
@@ -157,14 +158,14 @@
 	\item OIV and additional variables
 	      \begin{itemize}
 		      \item OIV 452-1
-		      \item New variables~\ref*{fig:newvariables}
+		      \item New variables~\ref{fig:newvariables}
 	      \end{itemize}
-	\item -> Excel to CSV
+	\item $\rightarrow$ Excel to CSV
 	\item Naive prediction
 	      \begin{itemize}
 		      \item LDA, random forrest
 		      \item fail~\ref{fig:predictionfail} means that additional variables are not able to predict OIV, but they still may have signal
-		      \item multiple OIV values per combination~\ref*{tab:oivconfusion}
+		      \item multiple OIV values per combination~\ref{tab:oivconfusion}
 	      \end{itemize}
 \end{itemize}
 
@@ -174,41 +175,61 @@
 		\caption{Prediction fail}\label{fig:predictionfail}
 	\end{center}
 \end{figure}
-Fig: \ref{fig:predictionfail}
+
+\paragraph{Fig: \ref{fig:predictionfail} Prediction fail}
+Can we predict OIV 452-1 from additional variables? NO, an accuracy of 0.226 shows model is close to random
 
 \begin{table}[H]
 	\centering
 	\caption{OIV row multi-value}\label{tab:oivconfusion}
 	\begin{tabular}{rrrrrccccc}
 		\toprule
-		sporulation & sporulation & necrosis & necrosis & necrosis & oiv 1 & oiv 3 & oiv 5 & oiv 7 & oiv 9 \\
-		{}          & density     & {}       & size     & area     & {}    & {}    & {}    & {}    & {}    \\
+		sporulation & sporulation & necrosis & necrosis & necrosis & oiv 1 & oiv 3 & oiv 5 & oiv 7            & oiv 9 \\
+		{}          & density     & {}       & size     & area     & {}    & {}    & {}    & {}               & {}    \\
 		\midrule
-		1           & 1           & 0        & 1        & 1        & X     & X     & X     & X     &       \\
-		1           & 7           & 1        & 3        & 5        & X     & X     & X     & X     &       \\
-		1           & 5           & 1        & 9        & 9        & X     & X     & X     & X     &       \\
-		1           & 5           & 1        & 1        & 7        &       &       & X     & X     &       \\
-		1           & 1           & 1        & 3        & 1        &       &       & X     & X     &       \\
-		0           & 1           & 1        & 3        & 3        &       &       &       & X \textbf{ERROR}     & X     \\
+		1           & 1           & 0        & 1        & 1        & X     & X     & X     & X                &       \\
+		1           & 7           & 1        & 3        & 5        & X     & X     & X     & X                &       \\
+		1           & 5           & 1        & 9        & 9        & X     & X     & X     & X                &       \\
+		1           & 5           & 1        & 1        & 7        &       &       & X     & X                &       \\
+		1           & 1           & 1        & 3        & 1        &       &       & X     & X                &       \\
+		0           & 1           & 1        & 3        & 3        &       &       &       & X \textbf{ERROR} & X     \\
 		\bottomrule
 	\end{tabular}
 \end{table}
+\paragraph{Fig:~\ref{tab:oivconfusion} OIV confusion}
+\begin{itemize}
+	\item Is there a reason for the model to fail prediction? Same combination of variables can yield the multiple OIVs
+	\item \textbf{Remaining error in data} All OIVs other than 9 should have sporulation, check data filtering
+\end{itemize}
+
 
 \subsection{Leaf Extraction}
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\linewidth]{plate_index_v2_fixed.png}
-	\caption*{Leaf disc detect }
+	\caption{Leaf disc detect}\label{fig:plateindexation}
 \end{figure}
 
-\begin{figure}
+\paragraph{Fig:~\ref{fig:plateindexation} plate indexation}
+\begin{itemize}
+	\item Steps to extract and index leaf discs
+	\item Why not stay with Ilastik?: too many variations in image acquisitions
+	\item \textbf{Add image more representative of various steps needed to index and the difficulties faced}
+\end{itemize}
+
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\linewidth]{ld_detector_brute_force.png}
 	\caption{Patch extraction}\label{fig:patchextraction}
 \end{figure}
 
-\textbf{Add image more representative of various steps needed to index and the difficulties faced}
+\paragraph{Fig:~\ref{fig:patchextraction} Patch Extraction}
+\begin{itemize}
+	\item Why square?: to prevent the model to look at the background.
+	\item Are we missing data?: Square represents over 82\% of the leaf disc
+\end{itemize}
+
 
 \begin{itemize}
 	\item Ilastik~\parencite{bergIlastikInteractiveMachine2019} fail because extremely different images
@@ -247,13 +268,17 @@ Zooniverse \parencite{zooniverse}
 		\caption{Necrosis flecks}\label{fig:necrosisstains}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.2\linewidth}
-		\includegraphics[width=\linewidth]{Exp21DM01_inoc1_T6_P27_b_2.png}
+		\includegraphics[width=\linewidth]{Exp21DM04_inoc2_T6_P12_a_3.png}
 		\caption{Necrosis senescence}\label{fig:necrosissenescence}
 	\end{subfigure}
 	\caption{The Four Phenotypes}\label{fig:phenotypes}
 \end{figure}
 
-Four phenotypes~\ref*{fig:phenotypes}
+\paragraph{Four phenotypes~\ref*{fig:phenotypes}}
+\begin{itemize}
+	\item Describe individual phenotypes
+	\item Why THIS 4?: We hope they represent the possible variation of the effect of the pathogen and the responses of the plant. Sporulation only represents the fitness of the pathogen \textbf{Needs checking and citation}
+\end{itemize}
 
 \begin{table}[H]
 	\caption{Zooniverse V1 data}\label{tab:zv1data}
@@ -265,7 +290,7 @@ Four phenotypes~\ref*{fig:phenotypes}
 			Phenotype           & Count \\
 			\midrule
 			sporulation         & 757   \\
-			necrosis spots       & 247   \\
+			necrosis spots      & 247   \\
 			necrosis flecks     & 149   \\
 			necrosis senescence & 50    \\
 			\bottomrule
@@ -279,7 +304,7 @@ Four phenotypes~\ref*{fig:phenotypes}
 			{}                                    & Precision & Recall & F1 score & Support \\
 			\midrule
 			sporulation                           & 0.92      & 0.93   & 0.93     & 113     \\
-			necrosis spots                         & 0.82      & 0.38   & 0.52     & 37      \\
+			necrosis spots                        & 0.82      & 0.38   & 0.52     & 37      \\
 			\rowcolor{red!25} necrosis flecks     & 0.00      & 0.00   & 0.00     & 22      \\
 			\rowcolor{red!25} necrosis senescence & 0.00      & 0.00   & 0.00     & 8       \\
 			micro avg                             & 0.91      & 0.66   & 0.77     & 180     \\
@@ -289,6 +314,17 @@ Four phenotypes~\ref*{fig:phenotypes}
 		\end{tabular}
 	\end{minipage}
 \end{table}
+
+\paragraph{Tab:~\ref{tab:zv1data} First Zooniverse annotations and model}
+\begin{itemize}
+	\item \textbf{Why this many images?} lots for scratch model 10000 for transfer learning, 1000 with data augmentation
+	\item \textbf{Dataset creation?} Naive sample of 1000 images from 80k available
+	\item \textbf{Annotation}: Zooniverse
+	\item \textbf{Model caracteristics?}~\parencite{dosovitskiyImageWorth16x162021}
+	\item \textbf{Hyperparameters} get form notebooks
+	\item \textbf{Issue}: Bad class cardinals repartition
+	\item \textbf{Issue}: Some low quality images got through
+\end{itemize}
 
 \begin{table}[H]
 	\caption{Zooniverse V2 data}\label{tab:zv2data}
@@ -300,7 +336,7 @@ Four phenotypes~\ref*{fig:phenotypes}
 			Phenotype           & Count \\
 			\midrule
 			sporulation         & 1188  \\
-			necrosis spots       & 578   \\
+			necrosis spots      & 578   \\
 			necrosis flecks     & 467   \\
 			necrosis senescence & 271   \\
 			\bottomrule
@@ -314,7 +350,7 @@ Four phenotypes~\ref*{fig:phenotypes}
 			{}                   & precision & recall & f1-score & support \\
 			\midrule
 			sporulation          & 0.9922    & 0.9078 & 0.9481   & 141     \\
-			necrosis\_spots       & 0.9388    & 0.8679 & 0.9020   & 106     \\
+			necrosis\_spots      & 0.9388    & 0.8679 & 0.9020   & 106     \\
 			necrosis\_stains     & 0.7313    & 0.7656 & 0.7481   & 64      \\
 			necrosis\_senescence & 0.6800    & 0.8947 & 0.7727   & 38      \\
 			micro avg            & 0.8808    & 0.8682 & 0.8745   & 349     \\
@@ -325,40 +361,51 @@ Four phenotypes~\ref*{fig:phenotypes}
 	\end{minipage}
 \end{table}
 
+\paragraph{Tab:~\ref{tab:zv1data} First Zooniverse annotations and model}
+\begin{itemize}
+	\item \textbf{Dataset creation?} Piecewise sample to obtain balanced class cardinals
+	\item \textbf{Annotation}: Zooniverse
+	\item \textbf{Why this many images?} Target was 1000 images, piecewise sampling yielded more
+	\item \textbf{Model caracteristics?}~\parencite{dosovitskiyImageWorth16x162021}
+	\item \textbf{Hyperparameters} get form notebooks
+	\item \textbf{Issue}: Bad class cardinals repartition -- fixed but not perfect
+	\item \textbf{Issue}: Some low quality images got through -- Still some bad images
+	\item \textbf{Issue}: More varied images == more complicated images => annotation disparities
+\end{itemize}
+
 \textbf{Annotation rounds used to show human error} -- \textbf{?}
 \textbf{Are all annotation rounds and models needed? Or only discuss shortcommings}
 
-\begin{itemize}
-	\item round 1
-	      \begin{itemize}
-		      \item class cardinal problems~\ref*{tab:zv1data}
-		      \item Image quality
-	      \end{itemize}
-	\item round 2 and 2+
-	      \begin{itemize}
-		      \item annotation conflict problems~\ref*{tab:zv2data}
-		      \item Expert cleanup
-	      \end{itemize}
-	\item round 3 -> experts only. Annotation by agreement
-\end{itemize}
-
 \subsubsection{Model}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.8\linewidth]{2023_cdt_data_frac_evolution.png}
-	\caption*{Ablation tests}\label{fig:ablationtests}
-\end{figure}
 
 \begin{itemize}
-    \item pytorch + pytorch lightning
-    \item based on~\ref{dosovitskiyImageWorth16x162021}
-    \item training hyperparameters
-    \item training steps
-    \item ablation tests
+	\item \textbf{Dataset creation?} Piecewise sample to obtain balanced class cardinals, kept bad images. images were tagged with quality information
+	\item \textbf{Annotation}: Experts only by agreement
+	\item \textbf{Why this many images?} Target was 1000 images, piecewise sampling yielded more (1881)
+	\item \textbf{Model caracteristics?}~\parencite{dosovitskiyImageWorth16x162021}
+	\item \textbf{Hyperparameters} get form notebooks
+	\item \textbf{Issue}: Bad class cardinals repartition -- fixed but not perfect -- Improved
+	\item \textbf{Issue}: Some low quality images got through -- Still some bad images -- Annotated => more images better than good images only
+	\item \textbf{Issue}: More varied images == more complicated images $\rightarrow$ annotation disparities $\rightarrow$ experts only
 \end{itemize}
 
 \begin{table}[H]
+	\caption{New patches data}
+	\begin{minipage}{0.4\linewidth}
+		\centering
+		\caption{Class cardinals}\label{tab:imprpatchersclassdistribution}
+		\begin{tabular}{rc}
+			\toprule
+			Phenotype           & Count \\
+			\midrule
+			sporulation         & 1119  \\
+			necrosis dots       & 712   \\
+			necrosis flecks     & 289   \\
+			necrosis senescence & 444   \\
+			\bottomrule
+		\end{tabular}
+	\end{minipage}%
 	\begin{minipage}{0.4\linewidth}
 		\centering
 		\caption{Classification report}\label{tab:imprpatches4phenotypes}
@@ -367,7 +414,7 @@ Four phenotypes~\ref*{fig:phenotypes}
 			{}                  & Precision & Recall & F1 score & Support \\
 			\midrule
 			sporulation         & 0.96      & 0.94   & 0.95     & 156     \\
-			necrosis spots       & 0.86      & 0.82   & 0.84     & 90      \\
+			necrosis dots       & 0.86      & 0.82   & 0.84     & 90      \\
 			necrosis flecks     & 0.82      & 0.90   & 0.86     & 41      \\
 			necrosis senescence & 0.93      & 0.89   & 0.91     & 57      \\
 			micro avg           & 0.91      & 0.90   & 0.90     & 344     \\
@@ -380,9 +427,35 @@ Four phenotypes~\ref*{fig:phenotypes}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\linewidth]{gc_hf_seg_sen_high.png}
-	\caption*{Grad-CAM validation}\label{fig:gradcamval}
+	\includegraphics[width=0.8\linewidth]{2023_cdt_data_frac_evolution.png}
+	\caption{Ablation tests}\label{fig:ablationtests}
 \end{figure}
+
+\paragraph{Fig:~\ref{fig:ablationtests} Ablation tests}
+\begin{itemize}
+	\item from 10\% to 100\% of dataset improvement of 0.05 in f1 score
+	\item plateau?
+	\item Add more images?
+\end{itemize}
+
+\begin{itemize}
+	\item pytorch + pytorch lightning
+	\item based on~\parencite{dosovitskiyImageWorth16x162021}
+	\item training hyperparameters
+	\item training steps
+	\item ablation tests
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{gc_hf_seg_sen_high.png}
+	\caption{Grad-CAM validation}\label{fig:gradcamval}
+\end{figure}
+
+\paragraph{Fig:~\ref{fig:gradcamval}}
+\begin{itemize}
+	\item Grad-CAM used for visual validation of binary model
+\end{itemize}
 
 \subsection{OIV 452-1 prediction}
 
@@ -417,7 +490,7 @@ Four phenotypes~\ref*{fig:phenotypes}
 
 \subsection{Unreliable human factor \textbf{?}}
 
-\subsection{Binary prediction as an heuristic for scale prediction}
+\subsection{Binary prediction as a heuristic for scale prediction}
 
 \subsection{Result from experiment re-analysis}
 
@@ -426,9 +499,9 @@ Four phenotypes~\ref*{fig:phenotypes}
 \section{Missing bibliography}
 
 \begin{itemize}
-    \item Velasquez-Camacho, L., Otero, M., Basile, B., Pijuan, J., Corrado, G. (2023). Current trends and perspectives on predictive models for mildew diseases in Vineyards. Microorganisms, 11, 73
-    \item Merdinoglu et al., 2018, Hogbregat et al., 2019, (A trouver dans Possamai et wiedemann\_merdinoglu, 2022)
-    \item Velasquez-Camacho et al., 2023
+	\item Velasquez-Camacho, L., Otero, M., Basile, B., Pijuan, J., Corrado, G. (2023). Current trends and perspectives on predictive models for mildew diseases in Vineyards. Microorganisms, 11, 73
+	\item Merdinoglu et al., 2018, Hogbregat et al., 2019, (A trouver dans Possamai et wiedemann\_merdinoglu, 2022)
+	\item Velasquez-Camacho et al., 2023
 \end{itemize}
 
 
