@@ -40,7 +40,19 @@
 
 \begin{changemargin}{60pt}{60pt}
 	\begin{abstract}
-		TODO
+		\textbf{Goal(s):}
+		\begin{itemize}
+			\item Create method to use automatically phenotype the interaction between PV and Vitis
+			\item Validate the method by finding QTL in past experiments
+			\item Compare human vs machine annotation
+		\end{itemize}
+
+		\textbf{Research or Methodology:}
+		\begin{itemize}
+			\item Methodology
+		\end{itemize}
+
+		\textbf{Too many images}
 	\end{abstract}
 \end{changemargin}
 
@@ -48,11 +60,21 @@
 
 \section{Background}
 
+\subsection{Vitis}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.7\linewidth]{2023_cdt_oiv_world.png}
+		\caption{OIV nations}\label{fig:oivworld}
+	\end{center}
+\end{figure}
+
 \subsection{Powdery Mildew}
 
 \begin{itemize}
 	\item Description/taxonomy
-	\item History \parencite*{fontaineEuropeBridgeheadWorldwide2021}
+	\item Infection mode and organ targets
+	\item History~\parencite*{fontaineEuropeBridgeheadWorldwide2021} \textbf{?}
 	\item Consequences
 	      \begin{itemize}
 		      \item Yield loss
@@ -68,11 +90,11 @@
 \subsection{Existing}
 
 \begin{enumerate}
-	\item Classical breeders -> poor quality wine
-	\item Quality breeders \textbf{needs citation}
+	\item European grapevines are sensitive to American pathogens~\parencite*{fontaineEuropeBridgeheadWorldwide2021}
+	\item Classical breeders -> poor quality wine \textbf{?}
+	\item Quality breeders after the 50s \textbf{needs citation} \textbf{?}
 	\item Introduce OIV and OIV 452-1
 	\item Critique scale \parencite{possamaiPhenotypingQTLIdentification2022}
-	\item Manual Annotations
 	\item Rpv3-, Rpv10- and Rpv12 \textbf{needs citation}
 	\item Image processing tools \parencite{hernandezAssessmentDownyMildew2022}, \parencite{zendlerHighthroughputPhenotypingLeaf2021}
 \end{enumerate}
@@ -81,7 +103,7 @@
 
 \begin{itemize}
 	\item Current CV approaches only look at sporulation
-	\item Our approach looks at sporulation 3 types of necrosis
+	\item Our approach looks at sporulation plus 3 types of necrosis
 	\item \textbf{TODO} \textbf{Goal}: Predict OIV 452-1 from images for binary variables
 	\item \textbf{TODO} Test on existing experiments
 \end{itemize}
@@ -100,7 +122,7 @@
 
 \begin{itemize}
 	\item Acquisitions since 2018
-	\item Multiple acquisition Methods
+	\item Multiple acquisition Methods != camera, lenses, lightning, framing, compression, post processing
 	\item Trays
 \end{itemize}
 
@@ -114,16 +136,16 @@
 \end{figure}
 
 \begin{itemize}
-	\item Images in folder
+	\item Database structure: Excels + images in folders with experiment metadata
 	\item OIV and additional variables
 	      \begin{itemize}
 		      \item OIV 452-1
 		      \item New variables~\ref*{fig:newvariables}
 	      \end{itemize}
-	\item Excels
 	\item -> Excel to CSV
 	\item Naive prediction
 	      \begin{itemize}
+		      \item LDA, random forrest
 		      \item fail~\ref{fig:predictionfail}
 		      \item multiple OIV values per combination~\ref*{tab:oivconfusion}
 	      \end{itemize}
@@ -156,15 +178,36 @@
 
 \subsection{Leaf Extraction}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\linewidth]{plate_index_v2_fixed.png}
+	\caption*{Leaf disc detect }
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\linewidth]{ld_detector_brute_force.png}
+	\caption{Patch extraction}\label{fig:patchextraction}
+\end{figure}
+
+\textbf{Add image more representative of various steps needed to index and the difficulties faced}
+
 \begin{itemize}
-	\item Ilastik \parencite{bergIlastikInteractiveMachine2019}
-	\item U-Net \parencite{ronnebergerUNetConvolutionalNetworks2015}
-	\item Fast R-CNN \parencite{girshickFastRCNN2015}
+	\item Ilastik~\parencite{bergIlastikInteractiveMachine2019} fail because extremely different images
+	\item U-Net~\parencite{ronnebergerUNetConvolutionalNetworks2015} misses some leaf discs in corner cases
+	\item Fast R-CNN~\parencite{girshickFastRCNN2015}
 	\item Indexation
+	\item Patch extraction~\ref{fig:patchextraction}
 \end{itemize}
+
+\textbf{Talk about failed approaches?}
 
 \subsection{Binary prediction}
 Zooniverse \parencite{zooniverse}
+\begin{itemize}
+	\item online annotation platform
+	\item Multiple annotations per disc
+\end{itemize}
 
 \subsubsection{Image Annotation}
 
@@ -189,7 +232,7 @@ Zooniverse \parencite{zooniverse}
 	\caption{The Four Phenotypes}\label{fig:phenotypes}
 \end{figure}
 
-Four phenotypes \ref*{fig:phenotypes}
+Four phenotypes~\ref*{fig:phenotypes}
 
 \begin{table}[H]
 	\caption{Zooniverse V1 data}\label{tab:zv1data}
@@ -249,7 +292,7 @@ Four phenotypes \ref*{fig:phenotypes}
 			\toprule
 			{}                   & precision & recall & f1-score & support \\
 			\midrule
-			sporulation           & 0.9922    & 0.9078 & 0.9481   & 141     \\
+			sporulation          & 0.9922    & 0.9078 & 0.9481   & 141     \\
 			necrosis\_dots       & 0.9388    & 0.8679 & 0.9020   & 106     \\
 			necrosis\_stains     & 0.7313    & 0.7656 & 0.7481   & 64      \\
 			necrosis\_senescence & 0.6800    & 0.8947 & 0.7727   & 38      \\
@@ -261,13 +304,55 @@ Four phenotypes \ref*{fig:phenotypes}
 	\end{minipage}
 \end{table}
 
+\textbf{Annotation rounds used to show human error} -- \textbf{?}
+\textbf{Are all annotation rounds and models needed? Or only discuss shortcommings}
+
 \begin{itemize}
-	\item round 1 -> class cardinal problems~\ref*{tab:zv1data}
-	\item round 2 and + -> annotation conflict problems~\ref*{tab:zv2data}
-	\item round 3 -> experts only. annotation by agreement
+	\item round 1
+	      \begin{itemize}
+		      \item class cardinal problems~\ref*{tab:zv1data}
+		      \item Image quality
+	      \end{itemize}
+	\item round 2 and 2+
+	      \begin{itemize}
+		      \item annotation conflict problems~\ref*{tab:zv2data}
+		      \item Expert cleanup
+	      \end{itemize}
+	\item round 3 -> experts only. Annotation by agreement
 \end{itemize}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\linewidth]{gc_hf_seg_sen_high.png}
+	\caption*{Grad-CAM validation}\label{fig:gradcamval}
+\end{figure}
+
 \subsubsection{OIV 452-1 prediction}
+
+\begin{itemize}
+	\item Annotation of 1881 leaf discs with OIV 452-1
+	\item Independent binary scales not enough to predict QTLs (will be tried t be sure)
+	\item Use binary predictions + image data to create a scale to feed to the QTL research
+	\item Multiple options for scale
+	      \begin{itemize}
+		      \item OIV 452-1
+		      \item Create new scale \textbf{Possible approach: Use dimensional reduction techniques to check if some types of leaves are clustered}
+		      \item Discrete or continuous?
+	      \end{itemize}
+	\item Validate method by analyzing previous known experiments
+	\item \textbf{Additional:} Compare human/computer annotations at different dai to see differencies in correlation by date
+\end{itemize}
+
+\textbf{Availabe:}
+\begin{itemize}
+	\item Annotations of 1881 leaf discs
+\end{itemize}
+\textbf{Missing:}
+\begin{itemize}
+	\item Annotation review
+	\item Predictive model, discrete?
+	\item Analyze previous experiments
+\end{itemize}
 
 \subsection{Experiments re-analysis}
 
