@@ -6,6 +6,7 @@
 \usepackage{float}
 \usepackage[utf8]{inputenc}
 \usepackage[backend=biber,style= authoryear]{biblatex}
+% \usepackage[backend=biber]{biblatex}
 \usepackage[english]{babel}
 \usepackage{csquotes}
 \usepackage{graphicx}
@@ -24,9 +25,16 @@
 \def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
 \let\endchangemargin=\endlist
 
-\title{ Outline for \textit{downy Mildew} article}
+\title{Simultaneous phenotyping (ML approach) of sporulation and necrosis traits in the vitis spp-downy mildew interaction}
 \date{22nd July 2023}
-\author{}
+\author{
+Marie-Celine Lacombe, (Pathogen, annotations review, data management)\\
+Felicià Maviane, (project lead, article writing, DL and annotation)\\
+Nemo Peeters (project management, article writing, pathogen),\\
+Tyronne Possamai, ? (comparing human/machine annotations, OIV annotations)\\
+David Rousseau (project management, article writing, DL)\\
+Sabine Wiedemann-Merdinoglu (Project management, Article writing, Pathogen, vitis, image acquisition\\
+}
 
 \begin{document}
 \pagenumbering{arabic}
@@ -34,7 +42,7 @@
 
 \begin{changemargin}{60pt}{60pt}
 	\begin{abstract}
-		\textbf{Not abstract but overview}
+		\textbf{Not abstract but overview} \newline
 		\textbf{Goal(s):}
 		\begin{itemize}
 			\item Computer science
@@ -50,20 +58,40 @@
 				      \item need to identify resistance genes in species related to the Vitis genus and in study populations
 			      \end{itemize}
 		\end{itemize}
-
 		\textbf{Research or Methodology:}
 		\begin{itemize}
 			\item Methodology
-		\end{itemize}
-
+		\end{itemize}"
 		\textbf{Too many images}
+            \textbf{Commentaires Nemo}
+            \begin{itemize}
+                \item Mettre les titres par défaut
+            \end{itemize}
+            \textbf{Commentaires Sabine}
+            Missing bibliography
+            \begin{itemize}
+            	\item Velasquez-Camacho, L., Otero, M., Basile, B., Pijuan, J., Corrado, G. (2023). Current trends and perspectives on predictive models for mildew diseases in Vineyards. Microorganisms, 11, 73
+            	\item Merdinoglu et al., 2018, Hogbregat et al., 2019, (A trouver dans Possamai et wiedemann\_merdinoglu, 2022)
+            	\item Velasquez-Camacho et al., 2023
+            \end{itemize}
 
 	\end{abstract}
 \end{changemargin}
 
+\begin{keywords}
+    Vitis, Downey Mildew, Computer vision, Deep Learning, Phenotyping, Leaf disk
+\end{keywords}
+
+
 \tableofcontents
 
-\section{Background}
+\section{Introduction}
+
+- importance of disease world wide on vitis (ref)
+- downy mildew (plasmopara viticola), details and ref, diversity ? means of controlling the disease on vitis.
+- Importance of phenotyping vitis for presence of DM, for detecting Resistant cultivar in lab. phenotyping.
+- outline of the article: new annotation and DL was performed on image data (already exsiting), and new DL model(s) were trained and allowed to detect simultaneously the sporulation and necroses on infected leaf discs. allowing automatic annotation of leaf discs, generating a compound OIV equivalent, and improoving the future  detection of resistant lines.
+
 
 \subsection{Vitis}
 
@@ -73,6 +101,16 @@
 		\caption{OIV nations}\label{fig:oivworld}
 	\end{center}
 \end{figure}
+
+\begin{itemize}
+    \item Species and their use
+    \item Ancient History
+    \item New threats
+    \begin{itemize}
+        \item Climate
+        \item American pathogens $\leftarrow$
+    \end{itemize}
+\end{itemize}
 
 \subsection{downy Mildew}
 
@@ -106,7 +144,7 @@
 	      \end{itemize}
 	\item Critique scale \parencite{possamaiPhenotypingQTLIdentification2022}
 	      \begin{itemize}
-		      \item takes into account spor and necr $\rightarrow$ needs training
+		      \item takes into account spor and necr $\rightarrow$ needs training and is complicated
 		      \item plus allows comparison
 		      \item nevertheless \parencite{possamaiPhenotypingQTLIdentification2022}
 	      \end{itemize}
@@ -205,6 +243,15 @@ Can we predict OIV 452-1 from additional variables? NO, an accuracy of 0.226 sho
 
 \subsection{Leaf Extraction}
 
+\begin{itemize}
+	\item Ilastik~\parencite{bergIlastikInteractiveMachine2019} fail because extremely different images
+	\item U-Net~\parencite{ronnebergerUNetConvolutionalNetworks2015} misses some leaf discs in corner cases
+	\item Fast R-CNN~\parencite{girshickFastRCNN2015}
+	\item Indexation
+	\item Patch extraction~\ref{fig:patchextraction}
+\end{itemize}
+
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\linewidth]{plate_index_v2_fixed.png}
@@ -228,15 +275,6 @@ Can we predict OIV 452-1 from additional variables? NO, an accuracy of 0.226 sho
 \begin{itemize}
 	\item Why square?: to prevent the model to look at the background.
 	\item Are we missing data?: Square represents over 82\% of the leaf disc
-\end{itemize}
-
-
-\begin{itemize}
-	\item Ilastik~\parencite{bergIlastikInteractiveMachine2019} fail because extremely different images
-	\item U-Net~\parencite{ronnebergerUNetConvolutionalNetworks2015} misses some leaf discs in corner cases
-	\item Fast R-CNN~\parencite{girshickFastRCNN2015}
-	\item Indexation
-	\item Patch extraction~\ref{fig:patchextraction}
 \end{itemize}
 
 \textbf{Talk about failed approaches?}
@@ -274,8 +312,9 @@ Zooniverse \parencite{zooniverse}
 	\caption{The Four Phenotypes}\label{fig:phenotypes}
 \end{figure}
 
-\paragraph{Four phenotypes~\ref*{fig:phenotypes}}
+\paragraph{Fig:~\ref*{fig:phenotypes} Four phenotypes}
 \begin{itemize}
+        \item \textbf{Why:} Supposed to be easier to annotate than OIV 452-1 cf. OIV critique
 	\item Describe individual phenotypes
 	\item Why THIS 4?: We hope they represent the possible variation of the effect of the pathogen and the responses of the plant. Sporulation only represents the fitness of the pathogen \textbf{Needs checking and citation}
 \end{itemize}
@@ -320,7 +359,7 @@ Zooniverse \parencite{zooniverse}
 	\item \textbf{Why this many images?} lots for scratch model 10000 for transfer learning, 1000 with data augmentation
 	\item \textbf{Dataset creation?} Naive sample of 1000 images from 80k available
 	\item \textbf{Annotation}: Zooniverse
-	\item \textbf{Model caracteristics?}~\parencite{dosovitskiyImageWorth16x162021}
+	\item \textbf{Model caracteristics?}~\parencite{dosovitskiyImageWorth16x162021} and others
 	\item \textbf{Hyperparameters} get form notebooks
 	\item \textbf{Issue}: Bad class cardinals repartition
 	\item \textbf{Issue}: Some low quality images got through
@@ -366,7 +405,7 @@ Zooniverse \parencite{zooniverse}
 	\item \textbf{Dataset creation?} Piecewise sample to obtain balanced class cardinals
 	\item \textbf{Annotation}: Zooniverse
 	\item \textbf{Why this many images?} Target was 1000 images, piecewise sampling yielded more
-	\item \textbf{Model caracteristics?}~\parencite{dosovitskiyImageWorth16x162021}
+	\item \textbf{Model caracteristics?}~\parencite{dosovitskiyImageWorth16x162021} and others
 	\item \textbf{Hyperparameters} get form notebooks
 	\item \textbf{Issue}: Bad class cardinals repartition -- fixed but not perfect
 	\item \textbf{Issue}: Some low quality images got through -- Still some bad images
@@ -383,7 +422,7 @@ Zooniverse \parencite{zooniverse}
 	\item \textbf{Dataset creation?} Piecewise sample to obtain balanced class cardinals, kept bad images. images were tagged with quality information
 	\item \textbf{Annotation}: Experts only by agreement
 	\item \textbf{Why this many images?} Target was 1000 images, piecewise sampling yielded more (1881)
-	\item \textbf{Model caracteristics?}~\parencite{dosovitskiyImageWorth16x162021}
+	\item \textbf{Model caracteristics?}~\parencite{dosovitskiyImageWorth16x162021} and others
 	\item \textbf{Hyperparameters} get form notebooks
 	\item \textbf{Issue}: Bad class cardinals repartition -- fixed but not perfect -- Improved
 	\item \textbf{Issue}: Some low quality images got through -- Still some bad images -- Annotated => more images better than good images only
@@ -427,6 +466,29 @@ Zooniverse \parencite{zooniverse}
 
 \begin{figure}[H]
 	\centering
+	\includegraphics[width=0.8\linewidth]{p_viticola/2023_cdt_best_model_cm.png}
+	\caption{Confusion matrix for best model}\label{fig:cmbestmodel}
+\end{figure}
+
+\paragraph{Fig:~\ref{fig:cmbestmodel} Confusion matrix for best model}
+\begin{itemize}
+    \item Model shows good results
+    \item phenotypes that were hard to annotate exhibit the worst scores
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{p_viticola/2023_cdt_experts_cm.png}
+	\caption{Confusion matrix for experts annotations}\label{fig:cmexpanno}
+\end{figure}
+
+\paragraph{Fig:~\ref{fig:cmexpanno} Experts annotations comparison}
+\begin{itemize}
+    \item Experts are less consistent than model
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
 	\includegraphics[width=0.8\linewidth]{2023_cdt_data_frac_evolution.png}
 	\caption{Ablation tests}\label{fig:ablationtests}
 \end{figure}
@@ -440,7 +502,7 @@ Zooniverse \parencite{zooniverse}
 
 \begin{itemize}
 	\item pytorch + pytorch lightning
-	\item based on~\parencite{dosovitskiyImageWorth16x162021}
+	\item based on~\parencite{dosovitskiyImageWorth16x162021} and others
 	\item training hyperparameters
 	\item training steps
 	\item ablation tests
@@ -458,6 +520,12 @@ Zooniverse \parencite{zooniverse}
 \end{itemize}
 
 \subsection{OIV 452-1 prediction}
+
+Why create a new model instead of using the binary predictions
+\begin{itemize}
+    \item Binary predictions lack enough information
+    \item It appears that the 4 variables are as complicated to annotate as the OIV
+\end{itemize}
 
 \begin{itemize}
 	\item Annotation of 1881 leaf discs with OIV 452-1
@@ -488,6 +556,10 @@ Zooniverse \parencite{zooniverse}
 
 \section{Results}
 
+Global DM phenotype on Vitis as factor of 4 discrete traits
+
+
+
 \subsection{Unreliable human factor \textbf{?}}
 
 \subsection{Binary prediction as a heuristic for scale prediction}
@@ -495,15 +567,6 @@ Zooniverse \parencite{zooniverse}
 \subsection{Result from experiment re-analysis}
 
 \section{Discussion}
-
-\section{Missing bibliography}
-
-\begin{itemize}
-	\item Velasquez-Camacho, L., Otero, M., Basile, B., Pijuan, J., Corrado, G. (2023). Current trends and perspectives on predictive models for mildew diseases in Vineyards. Microorganisms, 11, 73
-	\item Merdinoglu et al., 2018, Hogbregat et al., 2019, (A trouver dans Possamai et wiedemann\_merdinoglu, 2022)
-	\item Velasquez-Camacho et al., 2023
-\end{itemize}
-
 
 
 
