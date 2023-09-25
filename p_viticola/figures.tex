@@ -12,9 +12,9 @@
 \usepackage{graphicx}
 \usepackage{subcaption}
 \usepackage{booktabs}
-
 \usepackage{xargs}
 \usepackage[pdftex,dvipsnames,table]{xcolor}
+\usepackage{bbold}
 
 \graphicspath{{./resources/images}}
 \addbibresource{../articles.bib}
@@ -62,7 +62,7 @@
         \includegraphics[width=\linewidth]{oiv9.png}
         \caption{OIV 9}\label{fig:oiv9}
     \end{subfigure}
-    \caption{Examples of leaf discs annotated with OIV 452-1 values. Levels increase with pathogen resistance. Upper row, susceptible leaf discs with levels 1 to 3. Lower row, resistant leaf disc~\ref{fig:oiv7} and fully resistant leaf disc~\ref{fig:oiv9}}\label{fig:phenotypes}
+    \caption{Examples of leaf discs annotated with OIV 452-1 values. Levels increase with pathogen resistance. Upper row, susceptible leaf discs with levels 1 to 5. Lower row, resistant leaf disc~\ref{fig:oiv7} and fully resistant leaf disc~\ref{fig:oiv9}}\label{fig:phenotypes}
 \end{figure}
 
 \begin{figure}[H]
@@ -79,18 +79,35 @@
     \end{center}
 \end{figure}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{p_viticola/resources/images/swin_transformer.png}
+    \caption{Swin Transformer architecture to serve as backbone for the ordinal regression methods to quantify the symptoms in leaf discs}
+    \label{fig:enter-label}
+\end{figure}
 
 \begin{equation}
     -\sum_{c=1}^My_{o,c}\log(p_{o,c})\label{fml:crossentropy}
 \end{equation}
 
 \begin{equation}
-    f(x^{[i]}) = \hat{P}(y^{[i]} > r_{k}|y^{[i]} > r_{k-1})\label{fml:rankprob}
+    f(x^{[i]}) = \hat{P}(y^{[i]} > r_{k}|y^{[i]} > r_{k-1})\label{fml:binclass}
 \end{equation}
 
 \begin{equation}
-    \hat{P}(y^{[i]} > r_{k}) = \prod_{j=1}^{k}f_{j}(x^{[i]})\label{fml:chainprob}
+    \hat{P}(y^{[i]} > r_{k}) = \prod_{j=1}^{k}f_{j}(x^{[i]})\label{fml:unconditionalprob}
 \end{equation}
+
+\begin{equation}
+    q^{[i]} = 1 + \sum_{j=1}^{K-1}\mathbb{1}(\hat{P}(y^{[i]} > r_{j}) > 0.5)\label{fml:rankprob}
+\end{equation}
+
+\begin{itemize}
+    \item Cross entropy loss~\ref{fml:crossentropy}
+    \item Binary classification conditional probability~\ref{fml:binclass}
+    \item Unconditional probabilities~\ref{fml:unconditionalprob}
+    \item Rank prediction~\ref{fml:rankprob}
+\end{itemize}
 
 % \begin{equation}
 %     \hat{P}(y^{|i|} > r_{1}) \geq \hat{P}(y^{|i|} > r_{2}) \geq ... \geq \hat{P}(y^{|i|} > r_{K-1})\label{fml:}
