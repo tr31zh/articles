@@ -62,20 +62,20 @@
         \includegraphics[width=\linewidth]{oiv9.png}
         \caption{OIV 9}\label{fig:oiv9}
     \end{subfigure}
-    \caption{Exemples }\label{fig:phenotypes}
+    \caption{Examples of leaf discs annotated with OIV 452-1 values. Levels increase with pathogen resistance. Upper row, susceptible leaf discs with levels 1 to 3. Lower row, resistant leaf disc~\ref{fig:oiv7} and fully resistant leaf disc~\ref{fig:oiv9}}\label{fig:phenotypes}
 \end{figure}
 
 \begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.9\linewidth]{2023_a_oiv_indexation}
-        \caption{VEGOIA platform's manual imaging system}\label{fig:preprocessing}
+        \caption{Leaf disc extraction workflow}\label{fig:preprocessing}
     \end{center}
 \end{figure}
 
 \begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.7\linewidth]{2023_a_oiv_oiv_distribution}
-        \caption{Dateset OIV distribution}\label{fig:datadistribution}
+        \caption{Dateset OIV distribution: \textbf{Sabine: Equilibrer dataset}}\label{fig:datadistribution}
     \end{center}
 \end{figure}
 
@@ -104,7 +104,7 @@
 \begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.7\linewidth]{2023_a_oiv_cm}
-        \caption{Confusion matrix for best model using CORN ordinal regression method}\label{fig:oivcm}
+        \caption{Confusion matrix for best model using CORN ordinal regression method: \textbf{Sabine: Mettre accent sur 79 et humain}}\label{fig:oivcm}
     \end{center}
 \end{figure}
 
@@ -173,6 +173,18 @@
     \end{subfigure}
     \caption{Images with OIV value 7 predicted as 9 when sporulation is hardly perceptible}\label{fig:errors79}
 \end{figure}
+
+\textbf{Sabine}
+- Améliorer qualité images
+    - Eliminer bruit
+    - améliorer résolution pour améliorer annotations et modèles
+- Prédire QTL
+- Entrainer modèle sur images propres
+- Tester
+    - reste dataset
+    - QTLs ?
+    - Tester sur pop avec QTLs connus ?
+    Tester sur exp qu n'a pas produit des QTLs
 
 
 \end{document}
