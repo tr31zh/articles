@@ -87,7 +87,7 @@
 \end{figure}
 
 \begin{equation}
-    -\sum_{c=1}^My_{o,c}\log(p_{o,c})\label{fml:crossentropy}
+    -\sum_{c=1}^y_{o,c}\log(p_{o,c})\label{fml:crossentropy}
 \end{equation}
 
 \begin{equation}
@@ -123,32 +123,32 @@
     \label{tab:dtafracevol}
     \begin{tabular}{llrrrr}
         \toprule
-        Ordinal regression & backbone   & accuracy & f1 weighted avg & MSE & MAE                                 \\
+        Ordinal regression & backbone   & accuracy    & f1 weighted avg & MSE         & MAE         \\
         \midrule
-        Naive              & pretrained & 0.775±0.016                               & 0.769±0.021                   & 0.229±0.018 & 0.227±0.016 \\
-        CORAL              & pretrained & 0.447±0.027                               & 0.368±0.055                   & 0.737±0.052 & 0.612±0.024 \\
-        CORN               & pretrained & 0.778±0.014                               & 0.772±0.017                   & 0.224±0.015 & 0.223±0.014 \\
+        Naive              & pretrained & 0.775±0.016 & 0.769±0.021     & 0.229±0.018 & 0.227±0.016 \\
+        CORAL              & pretrained & 0.447±0.027 & 0.368±0.055     & 0.737±0.052 & 0.612±0.024 \\
+        CORN               & pretrained & 0.778±0.014 & 0.772±0.017     & 0.224±0.015 & 0.223±0.014 \\
         \bottomrule
     \end{tabular}
 \end{table}
 
 
 \begin{table}[H]
-\centering
-\caption{Confusion matrix precision recall and F1-score where the best ordinal regression method is used, the CORN approach is used}
-\label{tab:dtafracevol}
-\begin{tabular}{lrrrrrrrr}
-\toprule
-\textbf{True OIV} & \textbf{Predicted} &&&&  & \textbf{F1-score}\\
-{} &   \textbf{1} &   \textbf{3} &   \textbf{5} &   \textbf{7} &   \textbf{9}&&\\
-\midrule
-\textbf{1} &  41 &   7 &   0 &   0 &   0    & 0.90           \\
-\textbf{3} &   2 &  36 &   5 &   0 &   0    & 0.83     \\
-\textbf{5} &   0 &   1 &  43 &   3 &   0    & 0.86      \\
-\textbf{7} &   0 &   0 &   5 &  69 &  18    & 0.77     \\
-\textbf{9} &   0 &   0 &   0 &  15 &  36    & 0.69     \\
-\bottomrule
-\end{tabular}
+    \centering
+    \caption{Confusion matrix precision recall and F1-score where the best ordinal regression method is used, the CORN approach is used}
+    \label{tab:dtafracevol}
+    \begin{tabular}{lrrrrrrrr}
+        \toprule
+        \textbf{True OIV} & \textbf{Predicted} &            &            &            &            & \textbf{F1-score}   \\
+        {}                & \textbf{1}         & \textbf{3} & \textbf{5} & \textbf{7} & \textbf{9} &                   & \\
+        \midrule
+        \textbf{1}        & 41                 & 7          & 0          & 0          & 0          & 0.90                \\
+        \textbf{3}        & 2                  & 36         & 5          & 0          & 0          & 0.83                \\
+        \textbf{5}        & 0                  & 1          & 43         & 3          & 0          & 0.86                \\
+        \textbf{7}        & 0                  & 0          & 5          & 69         & 18         & 0.77                \\
+        \textbf{9}        & 0                  & 0          & 0          & 15         & 36         & 0.69                \\
+        \bottomrule
+    \end{tabular}
 \end{table}
 
 
@@ -220,15 +220,15 @@
 
 \textbf{Sabine}
 - Améliorer qualité images
-    - Eliminer bruit
-    - améliorer résolution pour améliorer annotations et modèles
+- Eliminer bruit
+- améliorer résolution pour améliorer annotations et modèles
 - Prédire QTL
 - Entrainer modèle sur images propres
 - Tester
-    - reste dataset
-    - QTLs ?
-    - Tester sur pop avec QTLs connus ?
-    Tester sur exp qu n'a pas produit des QTLs
+- reste dataset
+- QTLs ?
+- Tester sur pop avec QTLs connus ?
+Tester sur exp qu n'a pas produit des QTLs
 
 
 \end{document}
