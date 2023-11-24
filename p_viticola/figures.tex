@@ -1,12 +1,10 @@
 % \documentclass[english, draft]{article}
 \documentclass[english]{article}
 
-%\usepackage[showframe]{geometry}
 \usepackage{geometry}
 \usepackage{float}
 \usepackage[utf8]{inputenc}
 \usepackage[backend=biber,style= authoryear]{biblatex}
-% \usepackage[backend=biber]{biblatex}
 \usepackage[english]{babel}
 \usepackage{csquotes}
 \usepackage{graphicx}
@@ -30,8 +28,24 @@
 \end{abstract}
 
 \section{Background}
+European grapevine (Vitis vinifera L.) is one of the most economically and widespread worldwide crop. Around 33 of the  10.000 varieties,  cover 50% of the world's vineyard surface (OIV, 2017).
+Grapevine faces numerous pathogens and one of the most damaging diseases is downy mildew, caused by the oomycete Plasmopara viticola. This pathogen is endemic to the North America and was introduced into Europe around the 1870s (Gessler et al., 2011., Fontaine et al., 2021). All the Vitis vinifiera varieties are susceptible to the pathogen and the current strategy to control the disease  relies on the massive applications of fungicides and which are potentially harmful for the humans and the environment. Long -lasting breeding programs have been conducted to introgress resistance from wild Vitis species into elite resistant varieties (Merdinoglu et al., 2018; Töpfer & Trapp, 2022). According to Possamai & Wiedemann-Merdinoglu, (2022), more than 30 resistance genetic loci or Rpv (Resistance to Plasmopara viticola), have been already identified in grapevine and the majority of them confer a visual partial resistance defined by various levels of sporulation and  necrosis. The analysis of macroscopic phenotypes of the disease have been implemented by using several variables such as severity, incidence, spores count. Therefore, the use of the semi-quantitative OIV452-1 scale was frequently used assessing both sporulation and necrosis.
 
 \section{Material and Method}
+
+% Annotation a décrire dans le texte et parler des divergences et accords garder trace des désaccords et en parler lors de la discussion -> ML approaches can stabilise?
+% Enlever tous les désaccords avant le modèle? : Combien de données restent peux-t'on entrainer uniquement avec ça
+% Enlever seulement une partie des données fausse le but de l'expérience
+% Quelle question on pause quel dataset pour y répondre
+% Est-ce que les erreurs sont dans les images difficiles ?
+% Matrice de confusion avec ou sans désacord
+% Critique de l'OIV ? 7 & 9 neccessaires
+
+
+% Tables & figures
+% Légendes
+% Fontes
+% Nom de colonnes
 
 \begin{figure}[H]
     \begin{center}
@@ -39,6 +53,44 @@
         \caption{VEGOIA platform's manual imaging system}\label{fig:vegoia}
     \end{center}
 \end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.2\linewidth}
+        \includegraphics[width=\linewidth]{p_viticola/resources/images/2023_a_oiv_sporulation.png}
+        \caption{Sporulation}\label{fig:sporulation}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.2\linewidth}
+        \includegraphics[width=\linewidth]{p_viticola/resources/images/2023_a_oiv_stains.png}
+        \caption{Flecks}\label{fig:flecks}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.2\linewidth}
+        \includegraphics[width=\linewidth]{p_viticola/resources/images/2023_oiv_a_dots.png}
+        \caption{Dots}\label{fig:dots}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.2\linewidth}
+        \includegraphics[width=\linewidth]{p_viticola/resources/images/2023_a_oiv_senescence.png}
+        \caption{Senscence}\label{fig:senescence}
+    \end{subfigure}
+    \caption{Examples of \textit{Vitis} leaf discs infected with \textit{Plasmopara viticola} showing the four different phenotypes selected.}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\caption{Distribution of image quality and annotations for phenotype detecttion}
+\label{tab:databincount}
+\begin{tabular}{lrrrr}
+\toprule
+ issue &  sporulation &  necrosis\_dots &  necrosis\_stains &  necrosis\_senescence \\
+\midrule
+  blur &           11 &             10 &                2 &                    7 \\
+colour &           23 &              0 &                0 &                   13 \\
+  good &          983 &            579 &              261 &                  374 \\
+ water &          102 &            118 &               25 &                   49 \\
+ total &         1119 &            712 &              289 &                  444 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \begin{figure}[H]
     \centering
@@ -62,33 +114,45 @@
         \includegraphics[width=\linewidth]{oiv9.png}
         \caption{OIV 9}\label{fig:oiv9}
     \end{subfigure}
-    \caption{Examples of leaf discs annotated with OIV 452-1 values. Levels increase with pathogen resistance. Upper row, susceptible leaf discs with levels 1 to 5. Lower row, resistant leaf disc~\ref{fig:oiv7} and fully resistant leaf disc~\ref{fig:oiv9}}\label{fig:phenotypes}
+    \caption{Examples of \textit{Vitis} leaf discs infected with \textit{Plasmopara viticola} annotated with OIV 452-1 values. Levels increase with resistance to pathogen. Upper row, susceptible leaf discs with levels 1 to 5. Lower row, resistant leaf disc~\ref{fig:oiv7} and fully resistant leaf disc~\ref{fig:oiv9}}\label{fig:phenotypes}
 \end{figure}
+
+\begin{table}[H]
+\centering
+\caption{Distribution of image quality and OIV values}
+\label{tab:dataoivcount}
+\begin{tabular}{rrrrrrrr}
+\toprule
+ oiv &  blur &  color &  crop &  dark &  good &  water &  total \\
+\midrule
+   1 &     0 &      0 &     3 &    10 &   626 &    116 &    755 \\
+   3 &     2 &      2 &     0 &     7 &   479 &    144 &    634 \\
+   5 &     3 &      1 &     0 &     5 &   412 &    146 &    567 \\
+   7 &     1 &      0 &     3 &     6 &   549 &    141 &    700 \\
+   9 &     0 &      0 &     4 &    12 &   513 &    331 &    860 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[width=0.9\linewidth]{2023_a_oiv_indexation}
+        \includegraphics[width=0.9\linewidth]{p_viticola/resources/images/leaf_disc_extraction_2.png}
         \caption{Leaf disc extraction workflow}\label{fig:preprocessing}
     \end{center}
 \end{figure}
 
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[width=0.7\linewidth]{2023_a_oiv_oiv_distribution}
-        \caption{Visualization of the split of the annotated data set for training models}\label{fig:datadistribution}
-    \end{center}
-\end{figure}
+
+\begin{equation}
+    L = -\sum_{c=1}^My_{o,c}\log(p_{o,c})\label{fml:crossentropy}
+\end{equation}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\linewidth]{p_viticola/resources/images/swin_transformer.png}
-    \caption{Swin Transformer architecture to serve as backbone for the ordinal regression methods to quantify the symptoms in leaf discs}
-    \label{fig:enter-label}
+    \includegraphics[width=0.9\linewidth]{p_viticola/resources/images/2023_a_oiv_bin_corn.png}
+    \caption{Rank-consistent ordinal regression (CORN) architecture with output example predicting OIV 7}
+    \label{fig:corn}
 \end{figure}
-
-\begin{equation}
-    -\sum_{c=1}^My_{o,c}\log(p_{o,c})\label{fml:crossentropy}
-\end{equation}
 
 \begin{equation}
     f(x^{[i]}) = \hat{P}(y^{[i]} > r_{k}|y^{[i]} > r_{k-1})\label{fml:binclass}
@@ -99,73 +163,46 @@
 \end{equation}
 
 \begin{equation}
-    q^{[i]} = 1 + \sum_{j=1}^{K-1}\mathbb{1}(\hat{P}(y^{[i]} > r_{j}) > 0.5)\label{fml:rankprob}
+    OIV = (\sum_{j=1}^{K-1}\mathbb{1}(\hat{P}(y^{[i]} > r_{j}) > 0.5))*2 + 1\label{fml:rankprob}
 \end{equation}
-
-\begin{itemize}
-    \item Cross entropy loss~\ref{fml:crossentropy}
-    \item Binary classification conditional probability~\ref{fml:binclass}
-    \item Unconditional probabilities~\ref{fml:unconditionalprob}
-    \item Rank prediction~\ref{fml:rankprob}
-\end{itemize}
 
 \section{Results and Discussion}
 
+\subsection{Leaf Disc Detection}
 
 \begin{table}[H]
-    \centering
-    \caption{Average performance metrics with different ordinal regression modes}
-    \label{tab:dtafracevol}
-    \begin{tabular}{llrrrr}
-        \toprule
-        Ordinal regression & backbone   & accuracy    & f1 weighted avg & MSE         & MAE         \\
-        \midrule
-        Naive              & pretrained & 0.775±0.016 & 0.769±0.021     & 0.229±0.018 & 0.227±0.016 \\
-        % CORAL              & pretrained & 0.447±0.027 & 0.368±0.055     & 0.737±0.052 & 0.612±0.024 \\
-        CORN               & pretrained & 0.778±0.014 & 0.772±0.017     & 0.224±0.015 & 0.223±0.014 \\
-        \bottomrule
-    \end{tabular}
+\centering
+\caption{Leaf disc detection models evaluation}
+\label{tab:leafdiscdetectionresult}
+\begin{tabular}{lrrrrr}
+\toprule
+{} & \multicolumn{5}{l}{val\_loss} \\
+{} &    count &    min &    mean & median &         std \\
+scheduler &          &        &         &        &             \\
+\midrule
+None      &       20 &  0.015 &  0.0176 &  0.017 &  0.00223371 \\
+steplr    &       15 &  0.012 &  0.0154 &  0.015 &  0.00213140 \\
+\bottomrule
+\end{tabular}
 \end{table}
 
-
-\begin{table}[H]
+\subsection{Binary Predictions}
+\begin{figure}[H]
     \centering
-    \caption{Confusion matrix precision recall and F1-score where the best ordinal regression method is used, the CORN approach is used}
-    \label{tab:dtafracevol}
-    \begin{tabular}{lrrrrrrrr}
-        \toprule
-        \textbf{True OIV} & \textbf{Predicted} &            &            &            &            & \textbf{F1-score}   \\
-        {}                & \textbf{1}         & \textbf{3} & \textbf{5} & \textbf{7} & \textbf{9} &                   & \\
-        \midrule
-        \textbf{1}        & 48                 & 2          & 0          & 0          & 0          & 0.91                \\
-        \textbf{3}        & 7                  & 32         & 4          & 0          & 0          & 0.81                \\
-        \textbf{5}        & 0                  & 2          & 38         & 7          & 0          & 0.84                \\
-        \textbf{7}        & 0                  & 0          & 2          & 78         & 12         & 0.77                \\
-        \textbf{9}        & 0                  & 0          & 0          & 26         & 25         & 0.57                \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-
-% \begin{table}[H]
-%     \centering
-%     \caption{Confusion matrix precision recall and F1-score where the best ordinal regression method is used, the CORN approach is used}
-%     \label{tab:dtafracevol}
-%     \begin{tabular}{lrrrrrrrr}
-%         \toprule
-%         \textbf{True OIV} & \textbf{Predicted} &            &            &            &            & \textbf{F1-score}   \\
-%         {}                & \textbf{1}         & \textbf{3} & \textbf{5} & \textbf{7} & \textbf{9} &                   & \\
-%         \midrule
-%         \textbf{1}        & 41                 & 7          & 0          & 0          & 0          & 0.90                \\
-%         \textbf{3}        & 2                  & 36         & 5          & 0          & 0          & 0.83                \\
-%         \textbf{5}        & 0                  & 1          & 43         & 3          & 0          & 0.86                \\
-%         \textbf{7}        & 0                  & 0          & 5          & 69         & 18         & 0.77                \\
-%         \textbf{9}        & 0                  & 0          & 0          & 15         & 36         & 0.69                \\
-%         \bottomrule
-%     \end{tabular}
-% \end{table}
+    \includegraphics[width=0.9\linewidth]{p_viticola//resources//images/binary_models_result.png}
+    \caption{Backbones training results}
+    \label{fig:binbackbones}
+\end{figure}
 
 
-\section{Conclusions and perspectives}
+\subsection{OIV prediction}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{p_viticola//resources//images/oivresult.png}
+    \caption{OIV predictors evaluation}
+    \label{fig:oivresultstable}
+\end{figure}
 
 
 \begin{figure}[H]
@@ -194,17 +231,18 @@
     \caption{Images with OIV value 7 predicted as 9 when sporulation is hardly perceptible}\label{fig:errors79}
 \end{figure}
 
-\textbf{Sabine}
-- Améliorer qualité images
-- Eliminer bruit
-- améliorer résolution pour améliorer annotations et modèles
-- Prédire QTL
-- Entrainer modèle sur images propres
-- Tester
-- reste dataset
-- QTLs ?
-- Tester sur pop avec QTLs connus ?
-Tester sur exp qu n'a pas produit des QTLs
+\subsection{New Experiment}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{p_viticola/resources/images/dm23.png}
+    \caption{Model inference on never seen experimental data}
+    \label{fig:2023DM89}
+\end{figure}
+
+\section{Conclusions and perspectives}
+
+
 
 
 \end{document}
