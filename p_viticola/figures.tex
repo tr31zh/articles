@@ -180,7 +180,7 @@ A dataset of leaf discs scored with OIV 452-1 values using binocular magnifying 
 Since predictions are to be made on individual leaf discs they need to be extracted from the plates before being applied to the neural networks. Thus, the first step of pre-processing was to extract and index leaf discs. In order to extract and index leaf discs, first we need to detect the plate, then the leaf discs and finally index them in order to link them to the data in the Excel files. To prevent the model from taking the background into account when making predictions we then extract the largest square inscribe in the leaf disc which represents around 78\% of the full leaf disc. Figure~\ref{fig:preprocessing} shows a workflow of the leaf disc patch extraction and indexation from plates, which includes the steps described here below
 
 \subsubsection{Plate detection}
-As seen in figure~\ref{fig:vegoia}, When acquiring images, the plates can be anywhere within the Plexiglas frame
+As seen in figure~\ref{fig:vegoia}, When acquiring images the plates can be anywhere within the Plexiglas frame. For this reason, the first pre-processing step is the detection of the left bound of the plate using Hough line detection~\parencite{duda}
 
 % Annotation a décrire dans le texte et parler des divergences et accords garder trace des désaccords et en parler lors de la discussion -> ML approaches can stabilise?
 % Enlever tous les désaccords avant le modèle? : Combien de données restent peux-t'on entrainer uniquement avec ça
