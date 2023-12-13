@@ -77,7 +77,7 @@ The pre-processing dataset consists of 1932 plate images containing 22122 leaf d
         \includegraphics[width=\linewidth]{oiv9.png}
         \caption{OIV 9}\label{fig:oiv9}
     \end{subfigure}
-    \caption{Examples of \textit{Vitis} leaf discs infected with \textit{Plasmopara viticola} annotated with OIV 452-1 values. Levels increase with resistance to pathogen. Upper row, susceptible leaf discs with levels 1 to 5. Lower row, resistant leaf disc~\ref{fig:oiv7} and fully resistant leaf disc~\ref{fig:oiv9}}\label{fig:oivlevels}.
+    \caption{Examples of \textit{Vitis} leaf discs infected with \textit{Plasmopara viticola} annotated with OIV 452-1 values. Levels increase with resistance to pathogen. Upper row, susceptible leaf discs with levels 1 to 5. Lower row, resistant leaf disc~\ref{fig:oiv7} and fully resistant leaf disc~\ref{fig:oiv9}}\label{fig:oivlevels}. 
 \end{figure}
 
 \begin{table}[H]
@@ -177,10 +177,22 @@ A dataset of leaf discs scored with OIV 452-1 values using binocular magnifying 
     \end{center}
 \end{figure}
 
-Since predictions are to be made on individual leaf discs they need to be extracted from the plates before being applied to the neural networks. Thus, the first step of pre-processing was to extract and index leaf discs. In order to extract and index leaf discs, first we need to detect the plate, then the leaf discs and finally index them in order to link them to the data in the Excel files. To prevent the model from taking the background into account when making predictions we then extract the largest square inscribe in the leaf disc which represents around 78\% of the full leaf disc. Figure~\ref{fig:preprocessing} shows a workflow of the leaf disc patch extraction and indexation from plates, which includes the steps described here below
+Since predictions are to be made on individual leaf discs they need to be extracted from the plates before being applied to the neural networks. Thus, the first step of pre-processing was to detect and index leaf discs. Indexation is needed to link the leaf discs with their genotypes and the strains used for infection.
+Object detection will be handled by a pre-trained Fast R-CNN~\parencite{girshickFastRCNN2015} model. Leaf indexation will be performed with an image processing pipeline. Finally to prevent the model from taking the background into account when making predictions we then extract the largest square inscribe in the leaf disc which represents around 78\% of the full leaf disc. Figure~\ref{fig:preprocessing} shows a workflow of the leaf disc patch extraction and indexation from plates, which includes the steps described here below
 
-\subsubsection{Plate detection}
-As seen in figure~\ref{fig:vegoia}, When acquiring images the plates can be anywhere within the Plexiglas frame. For this reason, the first pre-processing step is the detection of the left bound of the plate using Hough line detection~\parencite{duda}
+\subsubsection{Leaf disc detection}
+We selected a Fast R-CNN model, from the PyTorch library~\parencite{falcon2019pytorch}, pre-trained on COCO V1. We selected a batch size of 20, the minimization was carried out using the ADAM optimizer with a learning rate of $7\times 10^{-5}$ with decay using StepLR with step size of 10 and a gamma of 0.8. Data augmentation was performed with the albumentations library to increase data variability by changing exposure and using a horizontal flip.
+
+\subsubsection{Leaf disc indexation}
+Bounding boxes predicted by the object detector model will be used to index the leaf discs. Variations in framing and quantity of leaf discs in the plates make it so a trivial approach will not work.
+In a first step leaf disc's row and column will be predicting with the centroid data from the bounding boxes applied to a mean shift for the columns and one for the rows. The varied positions of the plate combined to the possible absence of columns of leaf discs will cause the prediction the fail sometimes, this problem will only arise when less than ten leaf discs are present in a plate and the mean shift detects less than four columns. To address the first problem we used the Hough line detection~\parencite{dudaUseHoughTransformation1972} to detect the left border of the plate and crop the image to prevent the system for mistaken a plate aligned to the left with a missing first row. The second problem arises from the possibility of missing rows of leaf discs, to prevent this issue, when there are less than ten leaf discs detected, whenever there is enough space between two columns to fit 1.1 leaf discs, the next columns indexes are increased by one.
+
+\subsubsection{Patch extraction}
+In~\parencite{leeNewPerspectivesPlant2020} the authors show that deep learning models may take into account the image background when making predictions. To prevent this phenomena we decided to instead of the full leaf disc, just use the biggest square inscribed in the leaf disc which already represents around 78\% percent of the full surface.
+
+
+
+
 
 % Annotation a décrire dans le texte et parler des divergences et accords garder trace des désaccords et en parler lors de la discussion -> ML approaches can stabilise?
 % Enlever tous les désaccords avant le modèle? : Combien de données restent peux-t'on entrainer uniquement avec ça
@@ -228,19 +240,16 @@ As seen in figure~\ref{fig:vegoia}, When acquiring images the plates can be anyw
 \section{Results and Discussion}
 
 \subsection{Leaf Disc Detection}
-
-\begin{table}[H]
+\begin{table}
     \centering
-    \caption{Leaf disc detection models evaluation.}
+    \caption{Leaf disc detection models evaluation}
     \label{tab:leafdiscdetectionresult}
-    \begin{tabular}{lrrrrr}
+    \begin{tabular}{ll}
         \toprule
-        {}        & \multicolumn{5}{l}{val\_loss}                                        \\
-        {}        & count                         & min   & mean   & median & std        \\
-        scheduler &                               &       &        &        &            \\
+        scheduler & validation loss \\
         \midrule
-        None      & 20                            & 0.015 & 0.0176 & 0.017  & 0.00223371 \\
-        steplr    & 15                            & 0.012 & 0.0154 & 0.015  & 0.00213140 \\
+        None &  0.017±0.002 \\
+        steplr &  0.015±0.002 \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -399,6 +408,5 @@ Phenotypes legend:
         \bottomrule
     \end{tabular}
 \end{table}
-
 
 \end{document}
